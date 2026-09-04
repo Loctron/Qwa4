@@ -1,0 +1,31 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.2.21'
+    id 'jacoco'
+}
+
+group = 'ru.netology'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+
+test {
+    finalizedBy jacocoTestReport // Автоматический запуск отчета после тестов
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = false
+        html.required = true
+    }
+}
